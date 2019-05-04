@@ -1,16 +1,11 @@
 ---
-title: "Examples of using R for Business Analytics"
+title: "Birth Statistics"
 output: html_notebook
 ---
 
-This is a collection of R examples for Business Analytics. Examples are presented in various materials (e.g. books and internet sources). 
+source: [Data Mining and Business Analytics with R](https://www.amazon.com/Data-Mining-Business-Analytics-R/dp/111844714X)
 
-Author: Nam Le
-
-Email: [namlt@protonmail.com]
-
-## Birth Statistics
-
+Author: [Nam Le](namlt@protonmail.com)
 
 
 ```{r}
