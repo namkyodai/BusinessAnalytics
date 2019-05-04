@@ -1,0 +1,20 @@
+---
+title: "Examples of using R for Business Analytics"
+output: html_notebook
+---
+
+This is a collection of R examples for Business Analytics. Examples are presented in various materials (e.g. books and internet sources). 
+
+Author: Nam Le
+
+Email: [namlt@protonmail.com]
+
+## Birth Statistics
+
+
+
+```{r}
+source("birth_statistic.R", echo = T, prompt.echo = "", spaced = F)
+```
+
+
