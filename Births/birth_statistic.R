@@ -1,3 +1,7 @@
+#Graphs are saved in GITHUB
+#https://raw.githubusercontent.com/namkyodai/BusinessAnalytics/master/Births/XXX.png
+
+
 library(lattice)
 library(nutshell)
 data(births2006.smpl)
