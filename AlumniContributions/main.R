@@ -9,20 +9,29 @@ don <- read.csv("contribution.csv")
 #or
 
 don[1:5,]
+
 table(don$Class.Year)
 barchart(table(don$Class.Year),horizontal=FALSE,xlab="Class Year",col="black")
 #plot the same barchart using ggplot2
+dev.copy(png,'alumni_classyear_bar.png',width = 800, height = 500)
+dev.off()
 
-p=ggplot(data.frame(table(don$Class.Year)), aes(x=Var1, y=Freq)) + geom_bar(stat="identity",width=0.8,color="blue",fill="steelblue")+geom_text(aes(label=Freq), vjust=-0.3, size=3.5)
-
+p=ggplot(data.frame(table(don$Class.Year)), aes(x=Var1, y=Freq))+labs(y="Freq", x="Class Year") + geom_bar(stat="identity",width=0.8,color="blue",fill="steelblue")+geom_text(aes(label=Freq), vjust=-0.3, size=3.5)
 p
+dev.copy(png,'alumni_classyear_barggplot.png',width = 800, height = 500)
+dev.off()
+
+
+
+
+
 # Horizontal bar plot
 p + coord_flip()
 
 
 ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
 
-ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()+ facet_grid(don$Major ~ .)
+#ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()+ facet_grid(don$Major ~ .)
 
 ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
 
@@ -99,7 +108,7 @@ t7=t6[t6[,2]>10,]
 t7[order(t7[,1],decreasing=TRUE),]
 plot(barchart(t7[,1],col="black"))
 
-ggplot(don, aes(x=don$Next.Degree))+  geom_bar()+coord_flip()
+#ggplot(don, aes(x=don$Next.Degree))+  geom_bar()+coord_flip()
 
 
 

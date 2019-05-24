@@ -12,8 +12,7 @@ k=data.frame(data)
 
 plot.new()
 par(mar=c(4, 4, 4, 4), bg="ivory")
-week=25
-#week= length(data[!is.na(data[,3]),3]) #the lastest week that EV value is available. Or you can simply put the number of week in instead of using length(data[!is.na(data[,3]),3]). Here 3 is the column.
+week= length(data[!is.na(data[,3]),3]) #the lastest week that EV value is available. Or you can simply put the number of week in instead of using length(data[!is.na(data[,3]),3]). Here 3 is the column.
 scalefactor=100
 trucy=100
 ticktime=35   #Set the Project Week at which you want to limit the X-axis
