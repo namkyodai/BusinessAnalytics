@@ -22,13 +22,6 @@ dev.copy(png,'alumni_classyear_barggplot.png',width = 800, height = 500)
 dev.off()
 
 
-
-
-
-# Horizontal bar plot
-p + coord_flip()
-
-
 ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
 
 #ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()+ facet_grid(don$Major ~ .)
@@ -57,6 +50,9 @@ hist(don$TGiving,main=NULL,xlab="Total Contribution")
 hist(don$TGiving[don$TGiving!=0][don$TGiving[don$TGiving!=0]<=1000],main=NULL,xlab="Total Contribution")
 boxplot(don$TGiving,horizontal=TRUE,xlab="Total Contribution")
 boxplot(don$TGiving,outline=FALSE,horizontal=TRUE,xlab="Total Contribution")
+dev.copy(png,'alumni_contributionplot.png',width = 800, height = 500)
+dev.off()
+
 
 
 ddd=don[don$TGiving>=30000,]
@@ -74,6 +70,8 @@ boxplot(TGiving~Gender,data=don,outline=FALSE, xlab="sex")
 boxplot(TGiving~Marital.Status,data=don,outline=FALSE,xlab="Marital status")
 boxplot(TGiving~AttendenceEvent,data=don,outline=FALSE,xlab="Attend event or not")
 
+dev.copy(png,'alumni_distribution_boxplot.png',width = 800, height = 500)
+dev.off()
 
 plot.new()
 #par(mar=c(4.5,4.3,1,1)+0.1,mfrow=c(1,1)) #--> this doesnt work for barchart function
@@ -88,6 +86,9 @@ t7[order(t7[,1],decreasing=TRUE),]
 
 
 plot(barchart(t7[,1],col="black"))
+dev.copy(png,'alumni_major_barplot.png',width = 800, height = 500)
+dev.off()
+
 
 dat2<-data.frame("Type",t7)
 
@@ -107,6 +108,9 @@ t6=cbind(t4,t5)
 t7=t6[t6[,2]>10,]
 t7[order(t7[,1],decreasing=TRUE),]
 plot(barchart(t7[,1],col="black"))
+dev.copy(png,'alumni_degree_barplot.png',width = 800, height = 500)
+dev.off()
+
 
 #ggplot(don, aes(x=don$Next.Degree))+  geom_bar()+coord_flip()
 
