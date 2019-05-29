@@ -116,7 +116,7 @@ y<-data.frame(dat=TC2[,1],IS=rep("TC2"))
 x<-cbind(time,x)
 y<-cbind(time,y)
 xy <- rbind(x, y)
-ggplot(xy, aes(fill=IS, y=dat, x=factor(time))) + geom_bar(position="dodge", stat="identity")
+ggplot(xy, aes(fill=IS, y=dat, x=factor(time))) + geom_bar(position="dodge", stat="identity")+labs(y="Peso", x="years") 
 dev.copy(png,'ROIpump_roi.png',width = 800, height = 500)
 dev.off()
 
