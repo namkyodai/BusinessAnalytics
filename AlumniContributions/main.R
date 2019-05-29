@@ -22,19 +22,12 @@ dev.copy(png,'alumni_classyear_barggplot.png',width = 800, height = 500)
 dev.off()
 
 
-ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
+#ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
 
 #ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()+ facet_grid(don$Major ~ .)
 
-ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
-
-
-
+#ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
 #+ geom_bar(stat="bin", fill="steelblue")
-
-
-
-
 
 don$TGiving=don$FY00Giving+don$FY01Giving+don$FY02Giving+don$FY03Giving+don$FY04Giving
 mean(don$TGiving)
@@ -90,13 +83,13 @@ dev.copy(png,'alumni_major_barplot.png',width = 800, height = 500)
 dev.off()
 
 
-dat2<-data.frame("Type",t7)
+#dat2<-data.frame("Type",t7)
 
-ggplot(data.frame(t7), aes(x=data.frame(t7)[,1]))+  geom_bar()
+#ggplot(data.frame(t7), aes(x=data.frame(t7)[,1]))+  geom_bar()
 
-ggplot(don, aes(x=data.frame(t7)[,1]))+  geom_bar()
+#ggplot(don, aes(x=data.frame(t7)[,1]))+  geom_bar()
 
-ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
+#ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
 
 
 
