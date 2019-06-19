@@ -64,42 +64,20 @@ read_excel_allsheets <- function(filename, tibble = FALSE) {
   x
 }
 
+
+#start to read and write data into csv file
+worksheets <- read_excel_allsheets("data1.xlsx")
+source("cleaning.R")
+filedata <- do.call(rbind,lapply(names(worksheets), function(x) cleaner(worksheets[[x]])))
+write.table(filedata, "myDF.csv", sep = ",", col.names = !file.exists("myDF.csv"), row.names=FALSE, append = T)
+
+
 worksheets <- read_excel_allsheets("data2.xlsm")
+source("cleaning.R")
+filedata <- do.call(rbind,lapply(names(worksheets), function(x) cleaner(worksheets[[x]])))
+write.table(filedata, "myDF.csv", sep = ",", col.names = !file.exists("myDF.csv"), row.names=FALSE, append = T)
 
-
-# code to read in each excel worksheet as individual dataframes
-for (i in 2:length(worksheets)){assign(paste0("df", i), as.data.frame(worksheets[i]))}
-
-# define function to clean data in each data frame (updated based on your data)
-cleaner <- function(df){
-  # drop rows with missing values 
-  df <- df[rowSums(is.na(df)) == 0,] 
-  return(df)
-}
-
-data2 <- do.call(rbind,lapply(names(worksheets), function(x) cleaner(worksheets[[x]])))
-
-cat("Print out the data 2 frame \n")
-
-print(data2)
-
-
-# we can now even combine two data frame 1 and 2 by using rbind
-
-data<-rbind(data1,data2)
-
-#or you can use
-library(plyr)
-data=rbind.fill(data1,data2)
-
-
-cat("Print out the data frame \n")
-
-print(data)
-
-
-
-
+#end
 
 #https://medium.com/@niharika.goel/merge-multiple-csv-excel-files-in-a-folder-using-r-e385d962a90a
 
