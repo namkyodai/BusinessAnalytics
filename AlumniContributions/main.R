@@ -54,7 +54,7 @@ ddd1[order(ddd1$TGiving,decreasing=TRUE),] #display with decreasing
 #-----------------
 plot.new()
 par(mar=c(4.5,4.3,1,1)+0.1,mfrow=c(2,2))
-boxplot(TGiving~Class.Year,data=don,outline=FALSE, xlab="year")
+boxplot(TGiving~Class.Year,data=don,outline=FALSE, xlab="year") 
 boxplot(TGiving~Gender,data=don,outline=FALSE, xlab="sex")
 boxplot(TGiving~Marital.Status,data=don,outline=FALSE,xlab="Marital status")
 boxplot(TGiving~AttendenceEvent,data=don,outline=FALSE,xlab="Attend event or not")
@@ -63,8 +63,6 @@ dev.copy(png,'alumni_distribution_boxplot.png',width = 800, height = 500)
 dev.off()
 
 plot.new()
-
-
 #-----------------
 t4=tapply(don$TGiving,don$Major,mean,na.rm=TRUE)
 t4
@@ -153,7 +151,8 @@ t5=table(don$TGivingIND,don$Class.Year)
 t5
 
 barplot(t5,beside=TRUE)
-
+dev.copy(png,'alumni_annual_barplotbeside.png',width = 800, height = 500)
+dev.off()
 
 mosaicplot(factor(don$Class.Year)~factor(don$TGivingIND))
 t50=tapply(don$TGivingIND,don$Class.Year,FUN=mean,na.rm=TRUE)
