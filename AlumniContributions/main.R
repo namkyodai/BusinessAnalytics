@@ -1,6 +1,11 @@
 library(lattice)
 library(ggplot2)
 
+
+source("multiplot.R")
+
+
+
 #----1. Data
 
 don <- read.csv("contribution.csv")
@@ -11,7 +16,7 @@ don <- read.csv("contribution.csv")
 don[1:5,]
 
 table(don$Class.Year)
-barchart(table(don$Class.Year),horizontal=FALSE,xlab="Class Year",col="black")
+a=barchart(table(don$Class.Year),horizontal=FALSE,xlab="Class Year",col="black")
 #plot the same barchart using ggplot2
 dev.copy(png,'alumni_classyear_bar.png',width = 800, height = 500)
 dev.off()
@@ -20,6 +25,20 @@ p=ggplot(data.frame(table(don$Class.Year)), aes(x=Var1, y=Freq))+labs(y="Freq", 
 p
 
 ggsave("alumni_classyear_barggplot.png", plot = p,scale = 1,width=6, height=4,units = c("in"),dpi = 300) 
+
+
+
+plot.new()
+par(mar=c(4.5,4.3,1,1)+0.1,mfrow=c(1,2),bg="white")
+
+a=barplot(table(don$Class.Year),xlab="Class Year",col="black")
+a=barplot(table(don$Class.Year),xlab="Class Year",col="black")
+b=ggplot(data.frame(table(don$Class.Year)), aes(x=Var1, y=Freq))+labs(y="Freq", x="Class Year") + geom_bar(stat="identity",width=0.8,color="blue",fill="steelblue")+geom_text(aes(label=Freq), vjust=-0.3, size=3.5)
+
+
+multiplot(b, b, cols=2)
+
+
 
 
 #ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
@@ -77,7 +96,6 @@ t6=cbind(t4,t5)
 t7=t6[t6[,2]>10,]
 t7[order(t7[,1],decreasing=TRUE),]
 
-
 plot(barchart(t7[,1],col="black"))
 dev.copy(png,'alumni_major_barplot.png',width = 800, height = 500)
 dev.off()
@@ -92,7 +110,7 @@ dev.off()
 #ggplot(don, aes(x=don$Major))+  geom_bar()+coord_flip()
 
 
-
+plot.new()
 t4=tapply(don$TGiving,don$Next.Degree,mean,na.rm=TRUE)
 t4
 t5=table(don$Next.Degree)
@@ -107,7 +125,52 @@ dev.off()
 
 #ggplot(don, aes(x=don$Next.Degree))+  geom_bar()+coord_flip()
 
+plot.new()
+densityplot(~TGiving|factor(Class.Year),data=don[don$TGiving<=1000,][don[don$TGiving<=1000,]$TGiving>0,],plot.points=FALSE,col="black")
+dev.copy(png,'alumni_year_densityplot.png',width = 800, height = 500)
+dev.off()
 
 
+t11=tapply(don$TGiving,don$Class.Year,FUN=sum,na.rm=TRUE)
+t11
+
+plot.new()
+par(mfrow=c(1,1))
+barplot(t11,ylab="Average Donation")
+dev.copy(png,'alumni_year_barplot.png',width = 800, height = 500)
+dev.off()
+
+
+plot.new()
+par(mar=c(4.5,4.3,1,1)+0.1,mfrow=c(2,2))
+barchart(tapply(don$FY04Giving,don$Class.Year,FUN=sum,
+                 na.rm=TRUE),horizontal=FALSE,ylim=c(0,225000),col="black", main="2004")
+
+barchart(tapply(don$FY03Giving,don$Class.Year,FUN=sum,
+                 na.rm=TRUE),horizontal=FALSE,ylim=c(0,225000),col="black", main="2003")
+barchart(tapply(don$FY02Giving,don$Class.Year,FUN=sum,
+                 na.rm=TRUE),horizontal=FALSE,ylim=c(0,225000),col="black", main="2002")
+barchart(tapply(don$FY01Giving,don$Class.Year,FUN=sum,
+                 na.rm=TRUE),horizontal=FALSE,ylim=c(0,225000),col="black", main="2001")
+barchart(tapply(don$FY00Giving,don$Class.Year,FUN=sum,
+                 na.rm=TRUE),horizontal=FALSE,ylim=c(0,225000),col="black", main="2000")
+
+
+
+plot.new()
+par(mar=c(4.5,4.3,1,1)+0.1,mfrow=c(2,3),bg="white")
+barplot(tapply(don$FY04Giving,don$Class.Year,FUN=sum,
+                na.rm=TRUE),ylim=c(0,225000),col="black", main="2004")
+barplot(tapply(don$FY03Giving,don$Class.Year,FUN=sum,
+                na.rm=TRUE),ylim=c(0,225000),col="black", main="2003")
+barplot(tapply(don$FY02Giving,don$Class.Year,FUN=sum,
+                na.rm=TRUE),ylim=c(0,225000),col="black", main="2002")
+barplot(tapply(don$FY01Giving,don$Class.Year,FUN=sum,
+                na.rm=TRUE),ylim=c(0,225000),col="black", main="2001")
+barplot(tapply(don$FY00Giving,don$Class.Year,FUN=sum,
+                na.rm=TRUE),ylim=c(0,225000),col="black", main="2000")
+
+dev.copy(png,'alumni_annual_barplot.png',width = 800, height = 500)
+dev.off()
 
 
