@@ -10,7 +10,3 @@ All <- lapply(filenames,function(filename){
 
 df <- do.call(rbind.data.frame, All)
 write.csv(df,merge_file_name)
-
-
-
-

@@ -18,8 +18,8 @@ dev.off()
 
 p=ggplot(data.frame(table(don$Class.Year)), aes(x=Var1, y=Freq))+labs(y="Freq", x="Class Year") + geom_bar(stat="identity",width=0.8,color="blue",fill="steelblue")+geom_text(aes(label=Freq), vjust=-0.3, size=3.5)
 p
-dev.copy(png,'alumni_classyear_barggplot.png',width = 800, height = 500)
-dev.off()
+
+ggsave("alumni_classyear_barggplot.png", plot = p,scale = 1,width=6, height=4,units = c("in"),dpi = 300) 
 
 
 #ggplot(don, aes(x=don$Marital.Status,fill=don$Marital.Status))+  geom_bar()
