@@ -13,7 +13,6 @@ FuelEff
 #ACC --> Acceleration
 # ET --> engine type
 
-
 #----------------------------
 plot.new()
 #par(mfrow=c(1,1))
@@ -40,7 +39,7 @@ summary(m1)
 cor(FuelEff)
 
 ## best subset regression in R
-library(leaps)  
+library(leaps)
 X=FuelEff[,2:7]
 y=FuelEff[,1]
 
@@ -62,10 +61,10 @@ percdiff=dim(n)
 for (k in 1:n) {
   train1=c(1:n)
   train=train1[train1!=k]
-  ## the R expression "train1[train1!=k]" picks from train1 those 
+  ## the R expression "train1[train1!=k]" picks from train1 those
   ## elements that are different from k and stores those elements in the
-  ## object train. 
-  ## For k=1, train consists of elements that are different from 1; that 
+  ## object train.
+  ## For k=1, train consists of elements that are different from 1; that
   ## is 2, 3, …, n.
   m1=lm(GPM~.,data=FuelEff[train,])
   pred=predict(m1,newdat=FuelEff[-train,]) #adding the new data, which is ignored earlier
@@ -78,7 +77,7 @@ rmse=sqrt(mean(diff**2))
 mape=100*(mean(percdiff))
 me   # mean error
 rmse # root mean square error
-mape # mean absolute percent error 
+mape # mean absolute percent error
 
 ## cross-validation (leave one out) for the model on weight only
 n=length(FuelEff$GPM)
@@ -99,4 +98,3 @@ mape=100*(mean(percdiff))
 me   # mean error
 rmse # root mean square error
 mape # mean absolute percent error
-

@@ -20,6 +20,9 @@ names(worksheets) <- worksheets
 # dataframe
 worksheets_list <- lapply(worksheets, function(.sheet){readWorksheet(object=datafile, .sheet)})
 
+worksheets_list <- lapply(worksheets, function(.sheet){readWorksheet(object=datafile, .sheet)})
+
+
 
 # limit worksheet_list to sheets with at least 1 dimension 
 worksheets_list2 <- worksheets_list[sapply(worksheets_list, function(x) dim(x)[1]) > 0]
