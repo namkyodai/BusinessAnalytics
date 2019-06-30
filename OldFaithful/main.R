@@ -5,7 +5,7 @@ library(locfit)
 
 
 OldFaithful <- read.csv("OldFaithful.csv")
-OldFaithful[1:3,]
+OldFaithful[1:10,]
 
 ## density histograms and smoothed density histograms
 ## time of eruption
