@@ -155,7 +155,7 @@ dev.copy(png,'alumni_annual_barplotbeside.png',width = 800, height = 500)
 dev.off()
 
 mosaicplot(factor(don$Class.Year)~factor(don$TGivingIND))
-dev.copy(png,'alumni_annual_mosaicplot.png',width = 800, height = 500)
+dev.copy(png,'alumni_annual_mosaicplot.png',width = 500, height = 500)
 dev.off()
 
 
