@@ -1,16 +1,27 @@
 ## first we read in the data
-toyota <- read.csv("https://www.biz.uiowa.edu/faculty/jledolter/DataMining/ToyotaCorolla.csv")
+df <- data.frame(read.csv("https://www.biz.uiowa.edu/faculty/jledolter/DataMining/ToyotaCorolla.csv"))
 #toyota <- read.csv("ToyotaCorolla.csv")
-toyota[1:3,]
-summary(toyota)
-hist(toyota$Price)
-## next we create indicator variables for the categorical variable
+df[1:3,]
+summary(df)
+hist(df$Price)
+
+library(ggplot2)
+df %>%
+  ggplot(aes(x=Price))+
+  geom_density()+
+  geom_histogram(aes(y = ..density..),
+                 colour = 1, fill = "white", alpha=0.3)
+
 ## FuelType with its three nominal outcomes: CNG, Diesel, and Petrol
-v1=rep(1,length(toyota$FuelType))
-v2=rep(0,length(toyota$FuelType))
-toyota$FuelType1=ifelse(toyota$FuelType=="CNG",v1,v2) #return value of CNG to v1, otherwise 0
-toyota$FuelType2=ifelse(toyota$FuelType=="Diesel",v1,v2) #return value of Diesel to v1, otherwise 0
-auto=toyota[-4] #ignore column 4 (Fueltype)
+v1=rep(1,length(df$FuelType))
+
+v2=rep(0,length(df$FuelType))
+
+df$FuelType1=ifelse(df$FuelType=="CNG",v1,v2) #return value of CNG to v1, otherwise 0
+
+
+df$FuelType2=ifelse(df$FuelType=="Diesel",v1,v2) #return value of Diesel to v1, otherwise 0
+auto=df[-4] #ignore column 4 (Fueltype)
 auto[1:3,]
 
 plot.new()
@@ -28,6 +39,49 @@ plot(Price~Weight,data=auto)
 
 dev.copy(png,'toyota_xyplot.png',width = 500, height = 800)
 dev.off()
+
+
+
+library(dplyr)
+require(gridExtra)
+library(ggpubr)
+plot.new()
+
+
+plot01 <- df%>%
+  ggplot(aes(x=Age, y=Price))+
+  geom_point()
+
+plot02 <- df%>%
+  ggplot(aes(x=KM, y=Price))+
+  geom_point()
+
+plot03 <- df%>%
+  ggplot(aes(x=HP, y=Price))+
+  geom_point()
+
+plot04 <- df%>%
+  ggplot(aes(x=MetColor, y=Price))+
+  geom_point()
+
+plot05 <- df%>%
+  ggplot(aes(x=Automatic, y=Price))+
+  geom_point()
+
+plot06 <- df%>%
+  ggplot(aes(x=CC, y=Price))+
+  geom_point()
+
+plot07 <- df%>%
+  ggplot(aes(x=Doors, y=Price))+
+  geom_point()
+
+plot08 <- df%>%
+  ggplot(aes(x=Weight, y=Price))+
+  geom_point()
+
+
+grid.arrange(plot01, plot02, plot03, plot04, plot05, plot06, plot07, plot07,ncol = 2, nrow = 4)
 
 
 ## regression on all data
@@ -58,8 +112,6 @@ mape # mean absolute percent error
 
 ## cross-validation (leave one out)
 n=length(auto$Price)
-diff=dim(n)
-percdiff=dim(n)
 for (k in 1:n) {
   train1=c(1:n)
   train=train1[train1!=k]
