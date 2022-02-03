@@ -100,7 +100,8 @@ summary(m2)
 
 ## cross-validation (leave one out) for the model on all six regressors
 n=length(df$GPM) #compute how many numbers of observation in the data.
-
+diff=dim(n)
+percdiff=dim(n)
 
 for (k in 1:n) {
   train1=c(1:n)

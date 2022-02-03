@@ -70,7 +70,7 @@ for (k in 1:length(alpha)) {
 g
 plot(g[,4]~g[,3],ylab="GCV",xlab="degrees of freedom")
 
-nn=alpha[which.min(g[,4])]
+nn0=alpha[which.min(g[,4])]
 
 f1=locfit(NOx~lp(EquivRatio,nn=nn0),data=ethanol)
 f1
